@@ -301,12 +301,16 @@ width: 100%;
   margin-left: 10px;
   margin-top: 20px;
 }
-.regie{
-  font-size: 20px;
+.regie {
   padding-left: 20px;
   padding-top: 20px;
-  border-width: medium;
-}
+  border: solid;
+  border-width: 5px;
+  border-radius: 25%;
+  margin-right: 1250px;
+  margin-left: 15px;
+  background-color: yellow;
+
 
 /* @media only screen and (min-width: 60em) { /* 960px */
   /* .container {

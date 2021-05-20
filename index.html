@@ -1,53 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="registration_number.css">
 </head>
+
 <body>
     <div class="container">
         <div class="row1">
-        <div class="row header">
-        <h1>Please enter a registration number </h1>
-        </div>
-        <!-- <div class="col-12">
+            <div class="row header">
+                <h1>Please enter a registration number </h1>
+            </div>
+
+            <div class="col-12">
+                <h2 class="registrationNumbers"></h2>
+            </div>
+            <!-- <div class="col-12">
             <h2 class="error-message"></h2>
         </div> -->
-        <div>
-    
-                 <input id="form"   type="console.text" placeholder="" required  pattern="[]" title=""></input>
+            <div>
 
-                 <h2  class="regie">CA 123-123</h2>
-                 <!-- <h3>Counter: <span class="counter"></span></h3> -->
-        </div>
-        <div class="col-12">
-            <h2 class="registrationNumbers"></h2>
-        </div>
-    
+                <input id="form" type="console.text" placeholder="" required pattern="[]" title=""></input>
+
+                <!-- <h4 id="reg"  class="regie"></h4> -->
+                <!-- <h3>Counter: <span class="counter"></span></h3> -->
+            </div>
+
+
             <div class="col-12">
+                <button id="btn" class="Addbtn" type="submit" form="form2">Add</button>
                 <form class="language">
-                    <input type="radio" id="Cape"  class = "reg"name="registration" value="Cape">
+                    <input type="radio" id="Cape" class="reg" name="registration" value="Cape">
                     <label for="Eng">CapeTown</label>
                     <input type="radio" id="Bellville" class="reg" name="registration" value="Bellville">
                     <label for="Xho">Bellville</label>
                     <input type="radio" id="Paarl" class="reg" name="registration" value="Paarl">
                     <label for="Spedi">Paarl</label><br>
-                  </form>
-                  <button class="Addbtn" type="submit" form="form2" >Add</button>
-            </div>
-            <!-- <button class="button" id="btn"  value="submit">Reset</button> -->
-            
-            
-        </div>
-    </div>
+                </form>
 
-    
+            </div>
+        </div>
+
+        <!-- <button class="button" id="btn"  value="submit">Reset</button> -->
+
+        <ul id="myList">
+            <h3 class="head">Registration Numbers List :</h3>
+        </ul>
+
+
+
+
+    </div>
     <script src="./factory _function.js" charset="utf-8"></script>
     <script src="./registration_number.js" charset="utf-8"></script>
-      
-        
+
+
 
 </body>
+
 </html>

@@ -6,28 +6,85 @@ var clearbtn = document.querySelector(".clear")
 var displaybtn = document.querySelector(".display")
 
 //var regex = /^(CA|CY|CL\s\d{3}\s\d{3})$/
-var registrationList;
+registrationList = JSON.parse(localStorage.getItem('registrations'))
 
-// if (localStorage['registrations']) {
+// if (registrationList) {
+//   console.log("There is data");
 //   registrationList = JSON.parse(localStorage.getItem('registrations'))
+//   for (var i = 0; i < registrationList.length; i++) {
+//     x = registrationList[i] 
+//     var element = document.createElement("li");
+//     var textnode = document.createTextNode(x);
+//    element.appendChild(textnode);
+//    element.classList.add('reg_number');
+  
+//    }
+// } else {
+//   console.log("No There is data");
 // }
-var registrationN = registration_numbers()
+
+//console.log(registrationList)
+// if(registrationList.length > 0){
+  // for (var i = 0; i < registrationList.length; i++) {
+  //   x = registrationList[i] 
+  //   var element = document.createElement("li");
+  //   var textnode = document.createTextNode(x);
+  //  element.appendChild(textnode);
+  //  element.classList.add('reg_number');
+  
+  //  }
+// }
+
+
+
+var registrationN = registration_numbers(registrationList)
+
 function registration(){
-   //if(reg.match(regex)){
+    var regList = registrationN.getReg()
+  console.log(!regList.includes(textarea.value))
+  registrationN.setReg(textarea.value)
+
+
+  
+
+  
+  if(regList.includes(textarea.value) === false) {
+    console.log("Not working");
+    // for (var i = 0; i < regList.length; i++) {
+    //   x = regList[i] 
+    //   var element = document.createElement("li");
+    //   var textnode = document.createTextNode(x);
+    //  element.appendChild(textnode);
+    //  element.classList.add('reg_number');
+    // }
+    // document.getElementById("myList").appendChild(element);
+   
+  } else {
+    for (var i = 0; i < regList.length; i++) {
+      x = regList[i] 
+      var element = document.createElement("li");
+      var textnode = document.createTextNode(x);
+     element.appendChild(textnode);
+     element.classList.add('reg_number');
+    }
+    document.getElementById("myList").appendChild(element);
+    console.log("yuyuyuyyuyuyuy");
     
-  var regList = registrationN.getReg()
-  var element = document.createElement("li");
-  var textnode = document.createTextNode(textarea.value);
-  element.appendChild(textnode);
-  element.classList.add('reg_number');
-
-  document.getElementById("myList").appendChild(element);
-  for (var i = 0; i <= regList.length; i++) {
-    registrationN.setReg(textarea.value)
-    localStorage.setItem('registrations', JSON.stringify(registrationN.getReg()))
-
   }
-}
+
+localStorage.setItem('registrations', JSON.stringify(registrationN.getReg()))
+
+ }
+
+
+  
+  
+  //console.log(registrationList);
+
+  // localStorage.setItem('registrations', JSON.stringify(registrationN.getReg()))
+
+  
+
 
 
 // function DisplayingReg() {

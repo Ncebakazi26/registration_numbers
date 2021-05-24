@@ -1,26 +1,35 @@
-function registraion_numbers() {
+function registration_numbers(existingReg) {
     // var objC = {}
     // var objB = {}
     // var objP = {}
-    var objreg = {}
+    // var regex = /^(CA|CY|CL\s\d{3}\s\d{3})$/
+    var objreg = existingReg || [] 
+
     function setReg(regs) {
-        if (objreg[regs] === undefined) {
-            objreg[regs] = 0;
+        // if(regs.match(regex)){
+            if (!objreg.includes(regs)) {
+                objreg.push(regs)
+                // return
+            // return true
+            // console.log(objreg)
+            }
+        // }
+        // else {
+        //     return "Please follow the format CA-123-123/CA 123 123"
+        // }
+       
+     }
 
-        }
-
-
-    }
     function getReg() {
         return objreg;
     }
     // function registration(){
-    //     var regex = "^(CA|CY|CL\s\d{3}\s\d{3})$"
+    //    
     // }
 
     //    function regAndtown(reg,){
     //        if(reg.startsWith("CA")){
-    //        reg = objC
+    //        return true
     //        }
     //        if(reg.startsWith("CY")){
     //            reg = objB

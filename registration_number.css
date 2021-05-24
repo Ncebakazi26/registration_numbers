@@ -297,11 +297,11 @@ width: 100%;
   background-color: coral;
   border: solid;
   color: white;
-  padding: 10px 22px;
-  text-align: center;
+   padding: 10px 22px;
+ text-align: center;
   display: inline-block;
   font-size: 20px;
-  margin-left: 10px;
+  padding-left: 50px;
   margin-top: 20px;
 }
 .regie {
@@ -350,7 +350,29 @@ ul{
  h3{
 margin-top: -10px;
 }
-
+.clear{
+  float: right;
+  font-size: 20px;
+  margin-right: 90px;
+  margin-top: 100px;
+  background: #ffe5e5;
+}
+.display{
+   margin-right: 100px; 
+   font-size: 20px; 
+   margin-top: 100px;
+  float: right;
+  background: #ffe5e5;
+  
+  
+}
+.town{
+  font-size: 20px;
+  float: right;
+  margin-top: -40px;
+  margin-right: 500px;
+  background: #ffe5e5;
+}
 
 /* @media only screen and (min-width: 60em) { /* 960px */
   /* .container {

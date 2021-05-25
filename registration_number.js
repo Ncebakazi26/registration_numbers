@@ -4,10 +4,13 @@ var addbtn = document.querySelector(".Addbtn")
 var regNum = document.querySelector(".registrationNumbers")
 var clearbtn = document.querySelector(".clear")
 var displaybtn = document.querySelector(".display")
+var displayMessage = document.querySelector (".message")
+var specifTownbtn = document.querySelector(".town")
 
 //var regex = /^(CA|CY|CL\s\d{3}\s\d{3})$/
-registrationList = JSON.parse(localStorage.getItem('registrations'))
-
+var registrationList = JSON.parse(localStorage.getItem('registrations'))
+//console.log(registrationList)
+//var x = ''
 // if (registrationList) {
 //   console.log("There is data");
 //   registrationList = JSON.parse(localStorage.getItem('registrations'))
@@ -35,72 +38,79 @@ registrationList = JSON.parse(localStorage.getItem('registrations'))
   //  }
 // }
 
-
+//console.log(registrationList)
 
 var registrationN = registration_numbers(registrationList)
+//if(JSON.parse(localStorage.getItem('registrations')))
+  var z = JSON.parse(localStorage.getItem('registrations'))
 
 function registration(){
-    var regList = registrationN.getReg()
-  console.log(!regList.includes(textarea.value))
+    // var regList = registrationN.getReg()
   registrationN.setReg(textarea.value)
+console.log(registrationN.isReapted(registrationList))
+  // for(var i =0; i< x.length ; i++){
+   var  x = registrationN.getReglist()
+    y=registrationN.singleReg()
+    //console.log(x.includes(textarea.value))
+ // console.log(registrationList == null)
 
+  if(registrationList !== null) {
+   // console.log(x.includes(textarea.value) ==false);
+    if(registrationList.includes(textarea.value)==false) {
 
-  
-
-  
-  if(regList.includes(textarea.value) === false) {
-    console.log("Not working");
-    // for (var i = 0; i < regList.length; i++) {
-    //   x = regList[i] 
-    //   var element = document.createElement("li");
-    //   var textnode = document.createTextNode(x);
-    //  element.appendChild(textnode);
-    //  element.classList.add('reg_number');
-    // }
-    // document.getElementById("myList").appendChild(element);
-   
-  } else {
-    for (var i = 0; i < regList.length; i++) {
-      x = regList[i] 
-      var element = document.createElement("li");
-      var textnode = document.createTextNode(x);
-     element.appendChild(textnode);
-     element.classList.add('reg_number');
-    }
-    document.getElementById("myList").appendChild(element);
-    console.log("yuyuyuyyuyuyuy");
+   // console.log("list")
+    //       var element = document.createElement("li");
+    //       var textnode = document.createTextNode(y);
+    //       element.appendChild(textnode);
+    //       element.classList.add('reg_number');
+    //       document.getElementById("myList").appendChild(element);   
+    //   } 
     
+    //   else{
+    //     displayMessage.innerHTML = "This registration number already exist"
+    //     displayMessage.classList.add("error")
+    //   }
+    //   if(x ===""){
+    //     displayMessage.innerHTML = "Please enter a registration number" 
+     }
+    //   localStorage.setItem('registrations', JSON.stringify(registrationN.getReglist()))
+
+      
+  }
+  else{
+    localStorage.setItem('registrations', JSON.stringify(registrationN.getReglist()))
+    console.log("hey")
   }
 
-localStorage.setItem('registrations', JSON.stringify(registrationN.getReg()))
+  // if(!registrationList.includes(textarea.value)) {
 
- }
+  // //console.log(x.includes(textarea.value))
+  //     var element = document.createElement("li");
+  //     var textnode = document.createTextNode(y);
+  //     element.appendChild(textnode);
+  //     element.classList.add('reg_number');
+  //     document.getElementById("myList").appendChild(element);   
+  // } 
 
-
+  // else{
+  //   displayMessage.innerHTML = "This registration number already exist"
+  //   displayMessage.classList.add("error")
+  // }
+  // if(x ===""){
+  //   displayMessage.innerHTML = "Please enter a registration number" 
+  // }
+  // localStorage.setItem('registrations', JSON.stringify(registrationN.getReglist()))
   
-  
-  //console.log(registrationList);
-
-  // localStorage.setItem('registrations', JSON.stringify(registrationN.getReg()))
-
-  
-
-
-
-// function DisplayingReg() {
-//   var element = document.createElement("li");
-//   var textnode = document.createTextNode(textarea.value);
-//   element.appendChild(textnode);
-//   element.classList.add('reg_number');
-
-//   document.getElementById("myList").appendChild(element);
-
-//   registrationN.setReg(textarea.value)
-//   localStorage.setItem('registrations', JSON.stringify(registrationN.getReg()))
-
-// }
-
+}
 addbtn.addEventListener('click', registration)
+
+specifTownbtn.addEventListener('click',function() {
+var radioBtn =radiobtn.value
+if(!radioBtn){
+  displayMessage.innerHTML= "Please choose a town"
+}
+
+});
 
 // else {
 //   return "Please enter a registration number"

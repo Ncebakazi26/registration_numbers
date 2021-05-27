@@ -6,117 +6,79 @@ var clearbtn = document.querySelector(".clear")
 var displaybtn = document.querySelector(".display")
 var displayMessage = document.querySelector (".message")
 var specifTownbtn = document.querySelector(".town")
-
+var listElem = document.querySelector("#myList")
+console.log(listElem)
 //var regex = /^(CA|CY|CL\s\d{3}\s\d{3})$/
+
 var registrationList = JSON.parse(localStorage.getItem('registrations'))
-//console.log(registrationList)
-//var x = ''
-// if (registrationList) {
-//   console.log("There is data");
-//   registrationList = JSON.parse(localStorage.getItem('registrations'))
-//   for (var i = 0; i < registrationList.length; i++) {
-//     x = registrationList[i] 
-//     var element = document.createElement("li");
-//     var textnode = document.createTextNode(x);
-//    element.appendChild(textnode);
-//    element.classList.add('reg_number');
-  
-//    }
-// } else {
-//   console.log("No There is data");
-// }
-
-//console.log(registrationList)
-// if(registrationList.length > 0){
-  // for (var i = 0; i < registrationList.length; i++) {
-  //   x = registrationList[i] 
-  //   var element = document.createElement("li");
-  //   var textnode = document.createTextNode(x);
-  //  element.appendChild(textnode);
-  //  element.classList.add('reg_number');
-  
-  //  }
-// }
-
-//console.log(registrationList)
-
 var registrationN = registration_numbers(registrationList)
-//if(JSON.parse(localStorage.getItem('registrations')))
-  var z = JSON.parse(localStorage.getItem('registrations'))
+// registrationN.setReg("hell")
+// console.log(registrationN.getReglist())
+ if (registrationList) {
+  for (var i = 0; i < registrationList.length; i++) {
+    var x = registrationList[i] 
+  appendElement(x)
+   }
+}
 
+function appendElement(newValue){
+      var element = document.createElement("li");
+      var textnode = document.createTextNode(newValue);
+     element.appendChild(textnode);
+     element.classList.add('reg_number');
+     document.getElementById("myList").appendChild(element); 
+}
 function registration(){
-    // var regList = registrationN.getReg()
-  registrationN.setReg(textarea.value)
-console.log(registrationN.isReapted(registrationList))
-  // for(var i =0; i< x.length ; i++){
-   var  x = registrationN.getReglist()
-    y=registrationN.singleReg()
-    //console.log(x.includes(textarea.value))
- // console.log(registrationList == null)
-
-  if(registrationList !== null) {
-   // console.log(x.includes(textarea.value) ==false);
-    if(registrationList.includes(textarea.value)==false) {
-
-   // console.log("list")
-    //       var element = document.createElement("li");
-    //       var textnode = document.createTextNode(y);
-    //       element.appendChild(textnode);
-    //       element.classList.add('reg_number');
-    //       document.getElementById("myList").appendChild(element);   
-    //   } 
-    
-    //   else{
-    //     displayMessage.innerHTML = "This registration number already exist"
-    //     displayMessage.classList.add("error")
-    //   }
-    //   if(x ===""){
-    //     displayMessage.innerHTML = "Please enter a registration number" 
-     }
-    //   localStorage.setItem('registrations', JSON.stringify(registrationN.getReglist()))
-
-      
+  var value = document.querySelector("#form").value
+  registrationList = JSON.parse(localStorage.getItem('registrations'))
+  registrationN.setReg(value)
+  if(value === ""){
+    displayMessage.innerHTML = "Please enter registration number"
+      displayMessage.classList.add("error")
+      return false
+  } 
+  if(registrationList){
+    if(registrationN.isReapted(registrationList)){
+      displayMessage.innerHTML = "This registration number already exist"
+      displayMessage.classList.add("error") 
+    } else{
+      localStorage.setItem('registrations', JSON.stringify(registrationN.getReglist()));
+      appendElement(value)
+    }
+  } else{
+    localStorage.setItem('registrations', JSON.stringify(registrationN.getReglist()));
+    appendElement(value)
   }
-  else{
-    localStorage.setItem('registrations', JSON.stringify(registrationN.getReglist()))
-    console.log("hey")
+  
+  }
+  
+
+function forTown(){
+  var radiobutton = document.querySelector(".reg:checked")
+  var specificT = radiobutton.value
+  for(var i =0; i<registrationList.length;i++){
+    if(registrationList[i].startsWith(specificT)){
+      document.getElementById("myList").innerHTML = ""
+      appendElement(registrationList[i])
+    }
+
   }
 
-  // if(!registrationList.includes(textarea.value)) {
-
-  // //console.log(x.includes(textarea.value))
-  //     var element = document.createElement("li");
-  //     var textnode = document.createTextNode(y);
-  //     element.appendChild(textnode);
-  //     element.classList.add('reg_number');
-  //     document.getElementById("myList").appendChild(element);   
-  // } 
-
-  // else{
-  //   displayMessage.innerHTML = "This registration number already exist"
-  //   displayMessage.classList.add("error")
-  // }
-  // if(x ===""){
-  //   displayMessage.innerHTML = "Please enter a registration number" 
-  // }
-  // localStorage.setItem('registrations', JSON.stringify(registrationN.getReglist()))
   
 }
+function displayAll(){
+  if (registrationList) {
+    for (var i = 0; i < registrationList.length; i++) {
+      var x = registrationList[i] 
+    appendElement(x)
+     }
+  } 
+  }
+
+
 addbtn.addEventListener('click', registration)
-
-specifTownbtn.addEventListener('click',function() {
-var radioBtn =radiobtn.value
-if(!radioBtn){
-  displayMessage.innerHTML= "Please choose a town"
-}
-
-});
-
-// else {
-//   return "Please enter a registration number"
-// }
-
-
+specifTownbtn.addEventListener('click',forTown)
+displaybtn.addEventListener('click' , displayAll)
 
 clearbtn.addEventListener('click', function () {
   localStorage.clear()

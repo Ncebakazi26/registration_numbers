@@ -1,41 +1,30 @@
 function registration_numbers(existingReg) {
-    var objC = {}
+   var objC = {}
     // var objB = {}
     // var objP = {}
     // var regex = /^(CA|CY|CL\s\d{3}\s\d{3})$/
     var objreg = existingReg || []
     var reg = ""
     function isReapted(regs){
-        var  repeated = false;
-        console.log(regs + "regs")
+        var repeated = false;
+        //console.log(regs + "regs")
 
-    if(regs !== null) {
         for(var i=0; i<regs.length;i++){
             var elem = regs[i];
-            
-            if (objC[elem] === undefined) {
-                objC[elem] = 0;
-            } 
-        }
-    }
-       
 
-        console.log(objC)
-        
-        var newRegNumber = singleReg();
-
-        for(let key in objC){
-
-            if(newRegNumber in objC){
-                alert("something");
-                repeated = true
-                break;
+            if(objC[elem] === undefined){
+                objC[elem]=0;
             }
         }
 
-        return repeated
+        var registration = singleReg();
 
+        if(objC.hasOwnProperty(registration)){
+            repeated=true
+        }
+       return repeated
     }
+    
     function setReg(regs) {
         reg = regs
         // if(regs.match(regex)){

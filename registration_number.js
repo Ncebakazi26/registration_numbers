@@ -8,12 +8,16 @@ var displayMessage = document.querySelector (".message")
 var specifTownbtn = document.querySelector(".town")
 var listElem = document.querySelector("#myList")
 console.log(listElem)
-//var regex = /^(CA|CY|CL\s\d{3}\s\d{3})$/
+//var regex = /^((CA|CY|)CL\s\d{3}\s\d{3})$/
+function textclear() {
+  textarea.value = ""
+  document.getElementById('Cape').checked = false
+  document.getElementById('Bellville').checked =false
+  document.getElementById('Paarl').checked =false
 
+}
 var registrationList = JSON.parse(localStorage.getItem('registrations'))
 var registrationN = registration_numbers(registrationList)
-// registrationN.setReg("hell")
-// console.log(registrationN.getReglist())
  if (registrationList) {
   for (var i = 0; i < registrationList.length; i++) {
     var x = registrationList[i] 
@@ -22,6 +26,7 @@ var registrationN = registration_numbers(registrationList)
 }
 
 function appendElement(newValue){
+  newValue = newValue.toUpperCase()
       var element = document.createElement("li");
       var textnode = document.createTextNode(newValue);
      element.appendChild(textnode);
@@ -32,15 +37,43 @@ function registration(){
   var value = document.querySelector("#form").value
   registrationList = JSON.parse(localStorage.getItem('registrations'))
   registrationN.setReg(value)
+  // if(!regex.match(value)){
+  //   displayMessage.innerHTML = "Please follow this format CA 123-123/ CA 123 123"
+  //   displayMessage.classList.add("error")
+  //   return false
+  // }
   if(value === ""){
-    displayMessage.innerHTML = "Please enter registration number"
+    setTimeout(function(){
+      displayMessage.innerHTML = "Please enter registration number"
       displayMessage.classList.add("error")
-      return false
+    },0);
+    setTimeout(function(){
+      displayMessage.innerHTML = ""
+    },2000);
+    return false
   } 
+  if(!registrationN.setReg(value)) {
+    setTimeout(function(){
+      displayMessage.innerHTML = "Please follow this format CA 123-123/ CA 123 123"
+      displayMessage.classList.add("error")
+     
+    },0);
+    setTimeout(function(){
+      displayMessage.innerHTML = ""
+    }, 2000);
+    return false
+  } 
+  else{
   if(registrationList){
     if(registrationN.isReapted(registrationList)){
-      displayMessage.innerHTML = "This registration number already exist"
-      displayMessage.classList.add("error") 
+      setTimeout(function(){
+        displayMessage.innerHTML = "This registration number already exist"
+      displayMessage.classList.add("error")
+      }, 0);
+      setTimeout(function() {
+        displayMessage.innerHTML = ""
+      }, 2000);
+       
     } else{
       localStorage.setItem('registrations', JSON.stringify(registrationN.getReglist()));
       appendElement(value)
@@ -49,21 +82,34 @@ function registration(){
     localStorage.setItem('registrations', JSON.stringify(registrationN.getReglist()));
     appendElement(value)
   }
-  
+  textclear()
+}
   }
   
 
 function forTown(){
   var radiobutton = document.querySelector(".reg:checked")
   var specificT = radiobutton.value
+  // if(specificT && registrationList===""){
+  //   displayMessage.innerHTML = "Currently there are no existing registration numbers"
+  //   displayMessage.classList.add("error") 
+  // }
   for(var i =0; i<registrationList.length;i++){
     if(registrationList[i].startsWith(specificT)){
       document.getElementById("myList").innerHTML = ""
       appendElement(registrationList[i])
     }
-
+     else{
+       setTimeout(function(){
+      displayMessage.innerHTML = "There is no registration number for this town"
+      displayMessage.classList.add("error") 
+       }, 0);
+      setTimeout(function() {
+        displayMessage.innerHTML = ""
+      }, 2000);
+     }
   }
-
+  textclear()
   
 }
 function displayAll(){
@@ -72,6 +118,16 @@ function displayAll(){
       var x = registrationList[i] 
     appendElement(x)
      }
+  }
+  else{
+    setTimeout(function(){
+      displayMessage.innerHTML = "Currently there are no existing registration numbers"
+      displayMessage.classList.add("error") 
+    },0);
+   setTimeout(function(){
+    displayMessage.innerHTML = ""
+    
+   },2000);
   } 
   }
 

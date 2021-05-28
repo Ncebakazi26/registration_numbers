@@ -85,23 +85,25 @@ function forTown() {
   var radiobutton = document.querySelector(".reg:checked")
   var specificT = radiobutton.value
   document.getElementById("myList").innerHTML = ""
-
+  
   for (var i = 0; i < registrationList.length; i++){
     if (registrationList[i].startsWith(specificT)) {
       appendElement(registrationList[i])
+      
+      displayMessage.innerHTML = ""
+
     }
 
-    else {
-      setTimeout(function () {
-        displayMessage.innerHTML = "There is no registration number for this town"
-        displayMessage.classList.add("error")
-      }, 0);
-      setTimeout(function () {
-        displayMessage.innerHTML = ""
-      }, 2000);
+  //   else {
       
-    }
-    
+  //     setTimeout(function () {
+  //       displayMessage.innerHTML = "There is no registration number for this town"
+  //       displayMessage.classList.add("error")
+  //     }, 0);
+  //     setTimeout(function () {
+  //       displayMessage.innerHTML = ""
+  //     }, 2000);
+  // } 
   }
   textclear()
 }

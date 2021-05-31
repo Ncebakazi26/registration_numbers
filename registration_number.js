@@ -33,8 +33,8 @@ function appendElement(newValue) {
 }
 function registration() {
   var value = document.querySelector("#form").value
-  registrationList = JSON.parse(localStorage.getItem('registrations'))
-  registrationN.setReg(value)
+ 
+  
   if (value === "") {
     setTimeout(function () {
       displayMessage.innerHTML = "Please enter registration number"
@@ -45,6 +45,8 @@ function registration() {
     }, 2000);
     return false
   }
+  registrationN.setReg(value)
+  registrationList = JSON.parse(localStorage.getItem('registrations'))
   if(registrationN.setReg(value)) {
  
     if (registrationList) {

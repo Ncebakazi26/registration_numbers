@@ -7,8 +7,6 @@ var displaybtn = document.querySelector(".display")
 var displayMessage = document.querySelector(".message")
 var specifTownbtn = document.querySelector(".town")
 var listElem = document.querySelector("#myList")
-console.log(listElem)
-//var regex = /^((CA|CY|)CL\s\d{3}\s\d{3})$/
 function textclear() {
   textarea.value = ""
   document.getElementById('Cape').checked = false
@@ -81,31 +79,48 @@ function registration() {
   }
 }
 
-function forTown() {
+function forEachTown() {
   var radiobutton = document.querySelector(".reg:checked")
-  var specificT = radiobutton.value
   document.getElementById("myList").innerHTML = ""
-  
-  for (var i = 0; i < registrationList.length; i++){
-    if (registrationList[i].startsWith(specificT)) {
-      appendElement(registrationList[i])
-      
-      displayMessage.innerHTML = ""
+  if(radiobutton){
+    var townList= registrationN.forTown(radiobutton.value)
 
+    if(townList.length !== 0){
+      for (var i = 0; i < townList.length; i++){
+        if (townList[i].startsWith(radiobutton.value)) {
+          appendElement(townList[i])
+        
+          displayMessage.innerHTML = ""
+          textclear()
+        }
+      }
     }
+  
 
-  //   else {
-      
-  //     setTimeout(function () {
-  //       displayMessage.innerHTML = "There is no registration number for this town"
-  //       displayMessage.classList.add("error")
-  //     }, 0);
-  //     setTimeout(function () {
-  //       displayMessage.innerHTML = ""
-  //     }, 2000);
-  // } 
+      else {
+        
+        setTimeout(function () {
+          displayMessage.innerHTML = "There is no registration number for this town"
+          displayMessage.classList.add("error")
+        }, 0);
+        setTimeout(function () {
+          displayMessage.innerHTML = ""
+          textclear()
+        }, 2000);
+    }
+  } 
+  else {
+    setTimeout(function () {
+      displayMessage.innerHTML = "Please select a town"
+      displayMessage.classList.add("error")
+    }, 0);
+    setTimeout(function () {
+      displayMessage.innerHTML = ""
+    }, 2000);
+    textclear()
   }
-  textclear()
+  
+  
 }
 function displayAll() {
    document.getElementById("myList").innerHTML = ""
@@ -129,7 +144,7 @@ function displayAll() {
 
 
 addbtn.addEventListener('click', registration)
-specifTownbtn.addEventListener('click', forTown)
+specifTownbtn.addEventListener('click', forEachTown)
 displaybtn.addEventListener('click', displayAll)
 
 clearbtn.addEventListener('click', function () {

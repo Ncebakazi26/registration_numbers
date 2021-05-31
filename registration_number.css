@@ -284,16 +284,13 @@ width: 100%;
   font-size: 30px;
 }
 #form{
-  height: 100px;
+  height: 70px;
   width: 40em;
   margin-left: 10px;
   position: relative;
 
 }
 .Addbtn{
-  /* padding-top: 0px;
-  
-  font-size: 25px; */
   background-color: coral;
   border: solid;
   color: white;
@@ -362,14 +359,14 @@ margin-top: -10px;
 }
 .clear{
   float: right;
-  font-size: 20px;
+  font-size: 15px;
   margin-right: 90px;
   margin-top: 100px;
   background: #ffe5e5;
 }
 .display{
    margin-right: 100px; 
-   font-size: 20px; 
+   font-size: 15px; 
    margin-top: 100px;
   float: right;
   background: #ffe5e5;
@@ -377,7 +374,7 @@ margin-top: -10px;
   
 }
 .town{
-  font-size: 20px;
+  font-size: 15px;
   float: right;
   margin-top: -40px;
   margin-right: 500px;
